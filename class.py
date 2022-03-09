@@ -1,9 +1,10 @@
 import os
 import shutil
 import pandas as pd
-dataDir=r"D:\Users\Engr M2J\Downloads\Compressed\Dataset\All Images"
-desDir=r"D:\Users\Engr M2J\Downloads\Compressed\Dataset\reorganized"
-readLable=pd.read_csv(r'D:\Users\Engr M2J\Downloads\Compressed\Dataset/HAM10000_metadata.csv')
+dataDir="D:/Users/Engr M2J/Downloads/Compressed/Dataset/All Images"
+desDir="D:/Users\Engr M2J/Downloads/Compressed/Dataset/reorganized/"
+readLable=pd.read_csv('D:/Users/Engr M2J/Downloads/Compressed/Dataset/HAM10000_metadata.csv')
+#print (readLable)
 
 #print(readLable['dx'].value_counts())
 label=readLable['dx'].unique().tolist()
@@ -15,8 +16,10 @@ for i in label:
     os.mkdir(desDir + str(i) + "/")
     sample=readLable[readLable["dx"]==i]['image_id']
     lable_images.extend(sample)
-    shutil.copyfile((dataDir + "/" + id + ".jpg"),(desDir + i + "/" + id + ".jpg"))
-    lable_images=[]
+    for id in lable_images:
+
+        shutil.copyfile((dataDir + "/" + id + ".jpg"),(desDir + i + "/" + id + ".jpg"))
+        lable_images=[]
 
 
 
